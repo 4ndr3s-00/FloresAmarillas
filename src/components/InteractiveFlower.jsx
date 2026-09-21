@@ -25,23 +25,23 @@ const stemVariants = {
 };
 
 const STEMS = [
-  "M200 396 Q132 300 172 156",
-  "M200 396 Q116 296 150 196",
-  "M200 396 Q278 294 246 152",
-  "M200 396 Q286 300 256 198",
-  "M200 396 Q200 290 204 182",
-  "M200 396 Q184 340 180 232",
-  "M200 396 Q216 340 220 234",
+  "M200 376 Q150 300 176 142",
+  "M200 376 Q112 286 224 134",
+  "M200 376 Q118 292 158 186",
+  "M200 376 Q286 288 242 182",
+  "M200 376 Q200 284 200 176",
+  "M200 376 Q184 330 182 224",
+  "M200 376 Q216 330 218 226",
 ];
 
 const FLOWERS = [
-  { cx: 180, cy: 134, r: 21 },
-  { cx: 220, cy: 128, r: 22 },
-  { cx: 164, cy: 178, r: 16 },
-  { cx: 236, cy: 174, r: 16 },
-  { cx: 200, cy: 162, r: 20 },
-  { cx: 182, cy: 216, r: 11 },
-  { cx: 218, cy: 216, r: 11 },
+  { cx: 176, cy: 116, r: 27 },
+  { cx: 224, cy: 108, r: 28 },
+  { cx: 158, cy: 168, r: 19 },
+  { cx: 242, cy: 162, r: 19 },
+  { cx: 200, cy: 150, r: 23 },
+  { cx: 182, cy: 206, r: 14 },
+  { cx: 218, cy: 206, r: 14 },
 ];
 
 function Flower({ cx, cy, r }) {
@@ -87,9 +87,9 @@ function Bouquet() {
 
   return (
     <motion.svg
-      viewBox="0 0 400 420"
+      viewBox="0 0 400 400"
       width={300}
-      height={315}
+      height={300}
       initial="closed"
       whileInView="bloom"
       viewport={{ once: false, amount: 0.4 }}
@@ -108,18 +108,18 @@ function Bouquet() {
       ))}
 
       <g>
-        <path d="M176 232 Q138 218 128 186 Q156 194 176 220" fill="#8fae5d" />
-        <path d="M232 228 Q268 214 276 180 Q252 190 232 214" fill="#8fae5d" />
-        <path d="M204 244 Q178 240 170 218 Q192 224 202 236" fill="#8fae5d" />
-        <path d="M200 250 Q226 246 232 226 Q210 230 202 244" fill="#8fae5d" opacity={0.8} />
+        <path d="M178 240 Q140 226 130 194 Q158 203 178 232" fill="#8fae5d" />
+        <path d="M230 230 Q264 220 272 188 Q248 196 230 222" fill="#8fae5d" />
+        <path d="M204 250 Q180 244 172 224 Q192 232 202 244" fill="#8fae5d" />
+        <path d="M200 258 Q228 252 234 232 Q210 238 200 252" fill="#8fae5d" opacity={0.85} />
       </g>
 
       <g>
         <path
-          d="M116 250 C148 264 252 264 284 250 L240 392 Q200 404 160 392 Z"
+          d="M120 252 C150 264 250 264 280 252 L238 372 Q200 382 162 372 Z"
           fill="#e9d094"
         />
-        <ellipse cx={200} cy={256} rx={92} ry={17} fill="#d2b873" />
+        <ellipse cx={200} cy={254} rx={88} ry={15} fill="#d2b873" />
       </g>
 
       {back.map((f) => (
@@ -128,45 +128,45 @@ function Bouquet() {
 
       <g>
         <path
-          d="M150 262 C160 276 240 276 250 262 L236 398 Q200 408 164 398 Z"
+          d="M148 256 C162 270 238 270 252 256 L234 374 Q200 384 166 374 Z"
           fill="#f3e2b8"
         />
         <path
-          d="M150 262 C160 276 240 276 250 262 L236 398 Q200 408 164 398 Z"
+          d="M148 256 C162 270 238 270 252 256 L234 374 Q200 384 166 374 Z"
           fill="none"
           stroke="#d4a017"
           strokeWidth={2}
         />
-        <path d="M188 268 L197 400" stroke="#d4a017" strokeWidth={1.5} opacity={0.4} />
-        <path d="M214 268 L203 400" stroke="#d4a017" strokeWidth={1.5} opacity={0.4} />
+        <path d="M188 262 L197 376" stroke="#d4a017" strokeWidth={1.5} opacity={0.4} />
+        <path d="M213 262 L203 376" stroke="#d4a017" strokeWidth={1.5} opacity={0.4} />
         <ellipse
-          cx={183}
-          cy={244}
-          rx={17}
-          ry={11}
+          cx={182}
+          cy={246}
+          rx={14}
+          ry={9}
           fill="#c9921f"
-          transform="rotate(-18 183 244)"
+          transform="rotate(-18 182 246)"
         />
         <ellipse
-          cx={217}
-          cy={244}
-          rx={17}
-          ry={11}
+          cx={218}
+          cy={246}
+          rx={14}
+          ry={9}
           fill="#c9921f"
-          transform="rotate(18 217 244)"
+          transform="rotate(18 218 246)"
         />
-        <circle cx={200} cy={248} r={6} fill="#a67c14" />
+        <circle cx={200} cy={250} r={5.5} fill="#a67c14" />
         <path
-          d="M190 251 Q184 276 178 292"
+          d="M192 253 Q187 276 182 290"
           stroke="#c9921f"
-          strokeWidth={4.5}
+          strokeWidth={4}
           strokeLinecap="round"
           fill="none"
         />
         <path
-          d="M210 251 Q216 276 222 292"
+          d="M208 253 Q213 276 218 290"
           stroke="#c9921f"
-          strokeWidth={4.5}
+          strokeWidth={4}
           strokeLinecap="round"
           fill="none"
         />
