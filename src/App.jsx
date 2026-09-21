@@ -33,12 +33,12 @@ function App() {
         <span>Hecho con flores para ti</span>
         <span aria-hidden="true">·</span>
         <a
-          href="https://www.instagram.com/7_4ndres"
+          href="https://www.instagram.com/7_4ndr3s"
           target="_blank"
           rel="noopener noreferrer"
           className="font-medium text-gold-300/80 hover:text-gold-300 underline-offset-4 hover:underline transition-colors"
         >
-          @7_4ndres
+          @7_4ndr3s
         </a>
       </footer>
     </div>
