@@ -40,6 +40,15 @@ function App() {
         >
           @7_4ndr3s
         </a>
+        <span aria-hidden="true">&</span>
+        <a
+          href="https://www.instagram.com/esteban__ssj"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="font-medium text-gold-300/80 hover:text-gold-300 underline-offset-4 hover:underline transition-colors"
+        >
+          @esteban__ssj
+        </a>
       </footer>
     </div>
   );
