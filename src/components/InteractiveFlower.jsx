@@ -208,6 +208,11 @@ function InteractiveFlower() {
   const copyLink = () => {
     centerBouquet();
     navigator.clipboard?.writeText("https://floresamarillas-roan.vercel.app/");
+    fetch("/api/track", {
+      method: "POST",
+      headers: { "content-type": "application/json" },
+      body: JSON.stringify({ type: "copy" }),
+    }).catch(() => {});
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
   };

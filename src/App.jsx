@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 import BackgroundPetals from "./components/BackgroundPetals";
 import HeroSection from "./components/HeroSection";
 import InteractiveFlower from "./components/InteractiveFlower";
@@ -6,10 +6,21 @@ import FlowerCards from "./components/FlowerCards";
 import CustomLetter from "./components/CustomLetter";
 import { Flower } from "lucide-react";
 
+const track = (type) =>
+  fetch("/api/track", {
+    method: "POST",
+    headers: { "content-type": "application/json" },
+    body: JSON.stringify({ type }),
+  }).catch(() => {});
+
 function App() {
   const flowerSection = useRef(null);
   const scrollTo = (ref) =>
     ref.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+
+  useEffect(() => {
+    track("visit");
+  }, []);
 
   return (
     <div className="relative min-h-screen bg-night overflow-x-hidden">
