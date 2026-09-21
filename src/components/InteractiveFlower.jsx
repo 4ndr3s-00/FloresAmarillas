@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { motion } from "framer-motion";
 import confetti from "canvas-confetti";
 import { RotateCw, Share2, Check } from "lucide-react";
@@ -25,23 +25,23 @@ const stemVariants = {
 };
 
 const STEMS = [
-  "M200 388 Q136 300 170 148",
-  "M200 388 Q120 302 137 200",
-  "M200 388 Q278 296 246 140",
-  "M200 388 Q284 308 268 200",
-  "M200 388 Q200 280 202 185",
-  "M200 388 Q178 330 178 244",
-  "M200 388 Q222 330 222 248",
+  "M200 396 Q132 300 172 156",
+  "M200 396 Q116 296 150 196",
+  "M200 396 Q278 294 246 152",
+  "M200 396 Q286 300 256 198",
+  "M200 396 Q200 290 204 182",
+  "M200 396 Q184 340 180 232",
+  "M200 396 Q216 340 220 234",
 ];
 
 const FLOWERS = [
-  { cx: 170, cy: 120, r: 26 },
-  { cx: 234, cy: 112, r: 27 },
-  { cx: 137, cy: 200, r: 21 },
-  { cx: 272, cy: 194, r: 21 },
-  { cx: 202, cy: 172, r: 23 },
-  { cx: 178, cy: 232, r: 15 },
-  { cx: 222, cy: 234, r: 15 },
+  { cx: 180, cy: 134, r: 21 },
+  { cx: 220, cy: 128, r: 22 },
+  { cx: 164, cy: 178, r: 16 },
+  { cx: 236, cy: 174, r: 16 },
+  { cx: 200, cy: 162, r: 20 },
+  { cx: 182, cy: 216, r: 11 },
+  { cx: 218, cy: 216, r: 11 },
 ];
 
 function Flower({ cx, cy, r }) {
@@ -82,8 +82,8 @@ function Flower({ cx, cy, r }) {
 }
 
 function Bouquet() {
-  const front = FLOWERS.filter((f) => f.cy > 150);
-  const back = FLOWERS.filter((f) => f.cy <= 150);
+  const front = FLOWERS.filter((f) => f.cy > 200);
+  const back = FLOWERS.filter((f) => f.cy <= 200);
 
   return (
     <motion.svg
@@ -103,76 +103,58 @@ function Bouquet() {
           strokeWidth={4.5}
           strokeLinecap="round"
           fill="none"
-          opacity={0.9}
           variants={stemVariants}
         />
       ))}
 
       <g>
-        <path
-          d="M170 268 Q132 252 122 218 Q150 226 170 252"
-          fill="#8fae5d"
-          opacity={0.75}
-        />
-        <path
-          d="M236 262 Q272 250 282 214 Q256 222 236 246"
-          fill="#8fae5d"
-          opacity={0.75}
-        />
-        <path
-          d="M200 356 Q170 348 160 320 Q186 326 202 338"
-          fill="#8fae5d"
-          opacity={0.7}
-        />
-        <path
-          d="M200 356 Q230 348 240 320 Q214 326 198 338"
-          fill="#8fae5d"
-          opacity={0.7}
-        />
+        <path d="M172 268 Q134 252 124 218 Q152 226 172 252" fill="#8fae5d" />
+        <path d="M238 262 Q272 250 282 214 Q256 222 238 246" fill="#8fae5d" />
+        <path d="M200 360 Q170 352 160 324 Q186 330 202 342" fill="#8fae5d" />
+        <path d="M200 360 Q230 352 240 324 Q214 330 198 342" fill="#8fae5d" />
       </g>
 
-      <g opacity={0.9}>
+      <g>
         <path
-          d="M147 262 C170 274 230 274 253 262 L228 382 Q200 394 172 382 Z"
+          d="M116 250 C148 264 252 264 284 250 L240 392 Q200 404 160 392 Z"
           fill="#f3e2b8"
         />
         <path
-          d="M147 262 C170 274 230 274 253 262 L228 382 Q200 394 172 382 Z"
+          d="M116 250 C148 264 252 264 284 250 L240 392 Q200 404 160 392 Z"
           fill="none"
           stroke="#d4a017"
           strokeWidth={2}
-          opacity={0.7}
         />
-        <path d="M187 268 L197 384" stroke="#d4a017" strokeWidth={1.5} opacity={0.35} />
-        <path d="M214 268 L203 384" stroke="#d4a017" strokeWidth={1.5} opacity={0.35} />
+        <path d="M188 258 L197 396" stroke="#d4a017" strokeWidth={1.5} opacity={0.4} />
+        <path d="M214 258 L203 396" stroke="#d4a017" strokeWidth={1.5} opacity={0.4} />
         <ellipse
-          cx={184}
-          cy={254}
+          cx={183}
+          cy={243}
           rx={17}
           ry={11}
           fill="#c9921f"
-          transform="rotate(-18 184 254)"
+          transform="rotate(-18 183 243)"
         />
         <ellipse
-          cx={216}
-          cy={254}
+          cx={217}
+          cy={243}
           rx={17}
           ry={11}
           fill="#c9921f"
-          transform="rotate(18 216 254)"
+          transform="rotate(18 217 243)"
         />
-        <circle cx={200} cy={258} r={6} fill="#a67c14" />
+        <circle cx={200} cy={247} r={6} fill="#a67c14" />
         <path
-          d="M190 260 Q184 282 176 296"
+          d="M190 250 Q184 276 178 292"
           stroke="#c9921f"
-          strokeWidth={4}
+          strokeWidth={4.5}
           strokeLinecap="round"
           fill="none"
         />
         <path
-          d="M210 260 Q216 282 224 296"
+          d="M210 250 Q216 276 222 292"
           stroke="#c9921f"
-          strokeWidth={4}
+          strokeWidth={4.5}
           strokeLinecap="round"
           fill="none"
         />
@@ -189,10 +171,15 @@ function Bouquet() {
 }
 
 function InteractiveFlower() {
+  const bouquetRef = useRef(null);
   const [bloomKey, setBloomKey] = useState(0);
   const [copied, setCopied] = useState(false);
 
+  const centerBouquet = () =>
+    bouquetRef.current?.scrollIntoView({ behavior: "smooth", block: "center" });
+
   const reBloom = (e) => {
+    centerBouquet();
     setBloomKey((k) => k + 1);
     const rect = e.currentTarget.getBoundingClientRect();
     confetti({
@@ -210,6 +197,7 @@ function InteractiveFlower() {
   };
 
   const copyLink = () => {
+    centerBouquet();
     navigator.clipboard?.writeText("https://floresamarillas-roan.vercel.app/");
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
@@ -232,6 +220,7 @@ function InteractiveFlower() {
       </motion.p>
 
       <motion.button
+        ref={bouquetRef}
         key={bloomKey}
         type="button"
         initial={{ opacity: 0 }}
