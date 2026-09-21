@@ -8,7 +8,6 @@ import { Flower } from "lucide-react";
 
 function App() {
   const flowerSection = useRef(null);
-  const cardsSection = useRef(null);
   const scrollTo = (ref) =>
     ref.current?.scrollIntoView({ behavior: "smooth", block: "start" });
 
@@ -19,12 +18,10 @@ function App() {
       <HeroSection onOpen={() => scrollTo(flowerSection)} />
 
       <div ref={flowerSection}>
-        <InteractiveFlower onNext={() => scrollTo(cardsSection)} />
+        <InteractiveFlower />
       </div>
 
-      <div ref={cardsSection}>
-        <FlowerCards />
-      </div>
+      <FlowerCards />
 
       <CustomLetter />
 
