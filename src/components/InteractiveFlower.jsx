@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import confetti from "canvas-confetti";
-import { RotateCw, Share2 } from "lucide-react";
+import { RotateCw, Share2, Check } from "lucide-react";
 
 const GOLDS = ["#fde047", "#facc15", "#fbbf24", "#fef08a"];
 const YELLOW_CENTER = "#d4a017";
@@ -24,50 +24,72 @@ const stemVariants = {
   },
 };
 
-const FLOWERS = [
-  { cx: 120, cy: 178, r: 17 },
-  { cx: 172, cy: 116, r: 21 },
-  { cx: 228, cy: 106, r: 23 },
-  { cx: 275, cy: 172, r: 17 },
-  { cx: 200, cy: 168, r: 19 },
+const STEMS = [
+  "M200 388 Q136 300 170 148",
+  "M200 388 Q120 302 137 200",
+  "M200 388 Q278 296 246 140",
+  "M200 388 Q284 308 268 200",
+  "M200 388 Q200 280 202 185",
+  "M200 388 Q178 330 178 244",
+  "M200 388 Q222 330 222 248",
 ];
 
-const STEMS = [
-  "M200 330 Q140 250 120 196",
-  "M200 330 Q185 220 172 136",
-  "M200 330 Q205 195 228 126",
-  "M200 330 Q262 245 275 192",
-  "M200 330 Q200 245 200 182",
+const FLOWERS = [
+  { cx: 170, cy: 120, r: 26 },
+  { cx: 234, cy: 112, r: 27 },
+  { cx: 137, cy: 200, r: 21 },
+  { cx: 272, cy: 194, r: 21 },
+  { cx: 202, cy: 172, r: 23 },
+  { cx: 178, cy: 232, r: 15 },
+  { cx: 222, cy: 234, r: 15 },
 ];
 
 function Flower({ cx, cy, r }) {
+  const outer = Array.from({ length: 10 }, (_, i) => (360 / 10) * i);
+  const inner = Array.from({ length: 8 }, (_, i) => (360 / 8) * i + 22.5);
+
   return (
     <motion.g
       variants={bloomVariants}
       style={{ transformBox: "fill-box", transformOrigin: "center" }}
     >
-      {GOLDS.map((color, i) => (
+      {outer.map((angle, i) => (
         <ellipse
-          key={i}
+          key={"o" + i}
           cx={cx}
-          cy={cy - r * 2.1}
-          rx={Math.max(2, r * 0.95)}
-          ry={r * 1.5}
-          fill={color}
-          transform={`rotate(${(360 / 8) * i} ${cx} ${cy})`}
+          cy={cy - 2.3 * r}
+          rx={r * 0.52}
+          ry={r * 1.15}
+          fill={GOLDS[i % GOLDS.length]}
+          transform={`rotate(${angle} ${cx} ${cy})`}
         />
       ))}
-      <circle cx={cx} cy={cy} r={r * 0.55} fill={YELLOW_CENTER} />
+      {inner.map((angle, i) => (
+        <ellipse
+          key={"i" + i}
+          cx={cx}
+          cy={cy - 1.5 * r}
+          rx={r * 0.45}
+          ry={r * 0.85}
+          fill={GOLDS[(i + 2) % GOLDS.length]}
+          transform={`rotate(${angle} ${cx} ${cy})`}
+        />
+      ))}
+      <circle cx={cx} cy={cy} r={r * 0.72} fill={YELLOW_CENTER} />
+      <circle cx={cx} cy={cy} r={r * 0.4} fill="#fef08a" />
     </motion.g>
   );
 }
 
 function Bouquet() {
+  const front = FLOWERS.filter((f) => f.cy > 150);
+  const back = FLOWERS.filter((f) => f.cy <= 150);
+
   return (
     <motion.svg
-      viewBox="0 0 400 360"
+      viewBox="0 0 400 420"
       width={300}
-      height={270}
+      height={315}
       initial="closed"
       whileInView="bloom"
       viewport={{ once: false, amount: 0.4 }}
@@ -78,7 +100,7 @@ function Bouquet() {
           key={i}
           d={d}
           stroke="#7fb069"
-          strokeWidth={5}
+          strokeWidth={4.5}
           strokeLinecap="round"
           fill="none"
           opacity={0.9}
@@ -86,21 +108,89 @@ function Bouquet() {
         />
       ))}
 
-      {FLOWERS.map((f) => (
-        <Flower key={f.cx} cx={f.cx} cy={f.cy} r={f.r} />
-      ))}
-
-      <g opacity={0.85}>
-        <path d="M178 296 Q200 308 222 296 L222 322 Q200 334 178 322 Z" fill="#b5821f" />
-        <path d="M178 296 Q170 282 158 276 Q172 286 178 296 Z" fill="#c98f2a" />
-        <path d="M222 296 Q230 282 242 276 Q228 286 222 296 Z" fill="#c98f2a" />
+      <g>
+        <path
+          d="M170 268 Q132 252 122 218 Q150 226 170 252"
+          fill="#8fae5d"
+          opacity={0.75}
+        />
+        <path
+          d="M236 262 Q272 250 282 214 Q256 222 236 246"
+          fill="#8fae5d"
+          opacity={0.75}
+        />
+        <path
+          d="M200 356 Q170 348 160 320 Q186 326 202 338"
+          fill="#8fae5d"
+          opacity={0.7}
+        />
+        <path
+          d="M200 356 Q230 348 240 320 Q214 326 198 338"
+          fill="#8fae5d"
+          opacity={0.7}
+        />
       </g>
+
+      <g opacity={0.9}>
+        <path
+          d="M147 262 C170 274 230 274 253 262 L228 382 Q200 394 172 382 Z"
+          fill="#f3e2b8"
+        />
+        <path
+          d="M147 262 C170 274 230 274 253 262 L228 382 Q200 394 172 382 Z"
+          fill="none"
+          stroke="#d4a017"
+          strokeWidth={2}
+          opacity={0.7}
+        />
+        <path d="M187 268 L197 384" stroke="#d4a017" strokeWidth={1.5} opacity={0.35} />
+        <path d="M214 268 L203 384" stroke="#d4a017" strokeWidth={1.5} opacity={0.35} />
+        <ellipse
+          cx={184}
+          cy={254}
+          rx={17}
+          ry={11}
+          fill="#c9921f"
+          transform="rotate(-18 184 254)"
+        />
+        <ellipse
+          cx={216}
+          cy={254}
+          rx={17}
+          ry={11}
+          fill="#c9921f"
+          transform="rotate(18 216 254)"
+        />
+        <circle cx={200} cy={258} r={6} fill="#a67c14" />
+        <path
+          d="M190 260 Q184 282 176 296"
+          stroke="#c9921f"
+          strokeWidth={4}
+          strokeLinecap="round"
+          fill="none"
+        />
+        <path
+          d="M210 260 Q216 282 224 296"
+          stroke="#c9921f"
+          strokeWidth={4}
+          strokeLinecap="round"
+          fill="none"
+        />
+      </g>
+
+      {back.map((f) => (
+        <Flower key={"b" + f.cx} cx={f.cx} cy={f.cy} r={f.r} />
+      ))}
+      {front.map((f) => (
+        <Flower key={"f" + f.cx} cx={f.cx} cy={f.cy} r={f.r} />
+      ))}
     </motion.svg>
   );
 }
 
 function InteractiveFlower() {
   const [bloomKey, setBloomKey] = useState(0);
+  const [copied, setCopied] = useState(false);
 
   const reBloom = (e) => {
     setBloomKey((k) => k + 1);
@@ -119,11 +209,10 @@ function InteractiveFlower() {
     });
   };
 
-  const shareWhatsApp = () => {
-    const url = `https://wa.me/?text=${encodeURIComponent(
-      `Te guardé estas flores amarillas solo para ti: ${window.location.href}`,
-    )}`;
-    window.open(url, "_blank", "noopener");
+  const copyLink = () => {
+    navigator.clipboard?.writeText("https://floresamarillas-roan.vercel.app/");
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
   };
 
   const fade = (delay) => ({
@@ -204,11 +293,20 @@ function InteractiveFlower() {
           type="button"
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
-          onClick={shareWhatsApp}
+          onClick={copyLink}
           className="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-gold-400/30 text-gold-300 hover:bg-gold-400/10 transition-colors cursor-pointer"
         >
-          <Share2 size={16} aria-hidden="true" />
-          Compartir estas flores
+          {copied ? (
+            <>
+              <Check size={16} aria-hidden="true" />
+              ¡Enlace copiado!
+            </>
+          ) : (
+            <>
+              <Share2 size={16} aria-hidden="true" />
+              Compartir estas flores
+            </>
+          )}
         </motion.button>
       </motion.div>
     </section>
